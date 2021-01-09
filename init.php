@@ -38,4 +38,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/rest/includes.php';
 
-\YITH\Wishlist\Rest::init();
+\YITH\Wishlist\RestPlugin::init();

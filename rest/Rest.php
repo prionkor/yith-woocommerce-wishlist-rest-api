@@ -4,7 +4,7 @@ namespace YITH\Wishlist;
 
 use WP_REST_Response;
 
-if( ! class_exists( 'YITH\Wishlist\Rest' ) ) {
+if( ! class_exists( '\YITH\Wishlist\Rest' ) ) {
 	final class Rest {
 		const REST_NAMESPACE = 'yith/wishlist';
 		const REST_VERSION = 'v1';
