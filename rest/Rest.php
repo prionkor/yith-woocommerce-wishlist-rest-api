@@ -105,6 +105,28 @@ if( ! class_exists( '\YITH\Wishlist\Rest' ) ) {
 		 */
 		public static function post() {
 
+			$user_id = get_current_user_id();
+			$wishlist_name = isset( $request['wishlist_name'] ) ? $request['wishlist_name'] : '';
+						
+			if (empty($wishlist_name)) {
+				return new \WP_REST_Response( array( 'status' => 422, 'error' => "Empty parameter 'wishlist_name'"), 422);
+			}
+
+			$args = [
+				'user_id' => $user_id,
+				'wishlist_name' => $wishlist_name
+			];
+
+			try {
+				$new_wishlist = YITH_WCWL()->add_wishlist( $args );
+			} catch ( \YITH_WCWL_Exception $e ) {
+				return new \WP_REST_Response(array('status' => 422, 'error' => $e->getMessage() ), 422);
+			} catch ( \Exception $e ) {
+				return new \WP_REST_Response(array('status' => 500, 'error' => $e->getMessage() ), 500);
+			}
+			
+			return [ 'wishlist_id' => $new_wishlist->get_id() ];
+
 		}
 
 		/**
