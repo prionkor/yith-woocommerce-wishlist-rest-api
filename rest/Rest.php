@@ -125,7 +125,7 @@ if( ! class_exists( '\YITH\Wishlist\Rest' ) ) {
 				return new \WP_REST_Response(array('status' => 500, 'error' => $e->getMessage() ), 500);
 			}
 			
-			return [ 'wishlist_id' => $new_wishlist->get_id() ]; 
+			return [ 'wishlist_id' => $new_wishlist->get_id() ];
 
 		}
 
